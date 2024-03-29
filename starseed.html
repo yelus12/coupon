@@ -21,7 +21,7 @@
 <iframe name="testFrame" id="testFrame" width="360" height="900" src="https://coupon.withhive.com/1614" 
   frameborder="1" scrolling="yes" align="left">https://coupon.withhive.com/1614</iframe>
     
-    <div id="example-table"></div>
+    <div id="example-table" style="font-size: x-large;"></div>
 
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -115,7 +115,7 @@
             movableColumns: false,      //allow column order to be changed
             resizableRows: true,       //allow row order to be changed
             columns: [                 //define the table columns
-                { title: "Code", field: "code", width: 200, editor: false,cellClick:function(e, cell)
+                { title: "Code", field: "code", width: 250, editor: false,cellClick:function(e, cell)
                 {
                     test(cell.getRow().getData().code);
                     cell.getRow().getData().check = "copy";
