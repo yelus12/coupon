@@ -17,7 +17,14 @@
         }
     </script>
 </head>
-<body>
+<body style="font-size: x-large;">
+    <label id="url_text" style="font-size: x-large;">
+         https://yelus12.github.io/coupon/?cs_code=</label>
+    <a target="_blank" id="cs_code" href=""
+    style="font-size: x-large; color: #2222dd;" ></a>
+</br>
+<span>CS Code : </span><input type="text" id="uid"> <button onclick="makeLink()">내링크 만들기</button>
+</br>
 <iframe name="testFrame" id="testFrame" width="360" height="900" src="https://coupon.withhive.com/1614" 
   frameborder="1" scrolling="yes" align="left">https://coupon.withhive.com/1614</iframe>
     
@@ -29,6 +36,16 @@
     <script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.1.4/dist/js/tabulator.min.js"></script>
 
     <script>
+
+        function makeLink() {
+            var myId = document.getElementById("uid").value;
+            const link = document.getElementById('cs_code');
+            var makeUrl = "https://yelus12.github.io/coupon/?cs_code="+myId;
+            // link.innerText = makeUrl;
+            // link.href=link.innerText;
+            // const url_text = document.getElementById('url_text');
+            url_text.innerText = makeUrl;
+        }
 
         const urlParams = new URL(location.href).searchParams;
         const name = urlParams.get('cs_code');
@@ -89,7 +106,7 @@
         ];
 
         google.charts.load('current', { packages: ['corechart'] }).then(function () {
-            var query = new google.visualization.Query('https://spreadsheets.google.com/tq?tqx=out:html&tq=SELECT+B,D&key=1epBB34EvpDy1jFoTnciS4SLDxXEcPscAe9enkE6z70A&gid=30522386');
+            var query = new google.visualization.Query('https://spreadsheets.google.com/tq?tqx=out:html&tq=SELECT+B,C&key=1epBB34EvpDy1jFoTnciS4SLDxXEcPscAe9enkE6z70A&gid=30522386');
             query.send(function (response) {
                 var dataTable = response.getDataTable();
                 var jsonData = dataTable.toJSON();
@@ -99,7 +116,7 @@
                 for (var i = 1; i < jsonData.rows.length; i++) {
                     var htmlData = jsonData.rows[i].c[0].v;
                     tabledata[i]['code'] = htmlData;
-                    tabledata[i]['check'] = i;
+                    tabledata[i]['check'] = jsonData.rows[i].c[1].v;
                     table.updateData(tabledata);
                 }
 
@@ -107,6 +124,7 @@
         });
 
         var table = new Tabulator("#example-table", {
+            height : 900,
             data: tabledata,           //load row data from array
             reactiveData: true,
             layout: "fitColumns",      //fit columns to width of table
