@@ -95,9 +95,11 @@
                 var jsonData = dataTable.toJSON();
                 jsonData = JSON.parse(jsonData);
                 tabledata[0]['code']=name;
+                tabledata[0]['check']="cs code";
                 for (var i = 1; i < jsonData.rows.length; i++) {
                     var htmlData = jsonData.rows[i].c[0].v;
                     tabledata[i]['code'] = htmlData;
+                    tabledata[i]['check'] = i;
                     table.updateData(tabledata);
                 }
 
