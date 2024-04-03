@@ -32,6 +32,9 @@
             cs_code.innerText = makeUrl;
         }
 
+        function test(code){
+        navigator.clipboard.writeText(code);
+        }
         const urlParams = new URL(location.href).searchParams;
         const name = urlParams.get('cs_code');
         
